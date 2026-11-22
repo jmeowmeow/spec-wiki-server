@@ -13,6 +13,9 @@ The wiki server applies page actions sent to /page/{slug}/action: create, move, 
 
 _Source: `test/server.js`._
 
+[test: should create a page : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L74 ]
+[test: site should now have one page : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L226 ]
+
 ## S2: A move action puts the story items in the given order @v1 [proposed]
 
 - Given: a page whose story holds items a1, a2, a3 and a4
@@ -23,6 +26,8 @@ _Source: `test/server.js`._
 
 _Source: `test/server.js`._
 
+[test: should move the paragraphs to the order given : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L95 ]
+
 ## S3: An add action inserts an item after the given id @v1 [proposed]
 
 - Given: a page whose story order is a1, a3, a2, a4
@@ -31,6 +36,8 @@ _Source: `test/server.js`._
 - and: the journal records an add entry
 
 _Source: `test/server.js`._
+
+[test: should add a paragraph : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L118 ]
 
 ## S4: A remove action deletes the item with the given id @v1 [proposed]
 
@@ -41,6 +48,8 @@ _Source: `test/server.js`._
 
 _Source: `test/server.js`._
 
+[test: should remove a paragraph with given id : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L140 ]
+
 ## S5: An edit action replaces an item in place @v1 [proposed]
 
 - Given: a page whose story contains paragraph a3
@@ -49,6 +58,8 @@ _Source: `test/server.js`._
 - and: the journal records an edit entry
 
 _Source: `test/server.js`._
+
+[test: should edit a paragraph in place : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L163 ]
 
 ## S6: An unknown action type is rejected and the page is left unchanged @v1 [proposed]
 
@@ -59,6 +70,8 @@ _Source: `test/server.js`._
 
 _Source: `test/server.js`._
 
+[test: should default to no change : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L184 ]
+
 ## S7: Creating over an existing page is refused @v1 [proposed]
 
 - Given: the page adsf-test-page already exists
@@ -68,6 +81,8 @@ _Source: `test/server.js`._
 
 _Source: `test/server.js`._
 
+[test: should refuse to create over a page : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L206 ]
+
 ## S8: A page that is in no store is reported as not found @v1 [proposed]
 
 - Given: the page store, the default pages and the plugin pages hold no page with the slug asked for
@@ -75,6 +90,8 @@ _Source: `test/server.js`._
 - Then: the result is 'Page not found'
 
 _Source: `test/page.js`._
+
+[test: should create a page if it exists nowhere : https://github.com/fedwiki/wiki-server/blob/main/test/page.js#L80 ]
 
 ## S9: Pages missing from the store come from the default pages or plugin pages @v1 [proposed]
 
@@ -85,6 +102,10 @@ _Source: `test/page.js`._
 
 _Source: `test/page.js`._
 
+[test: should copy a page from default if nonexistant in db : https://github.com/fedwiki/wiki-server/blob/main/test/page.js#L51 ]
+[test: should copy a page from plugins if nonexistant in db : https://github.com/fedwiki/wiki-server/blob/main/test/page.js#L61 ]
+[test: should mark a page from plugins with the plugin name : https://github.com/fedwiki/wiki-server/blob/main/test/page.js#L71 ]
+
 ## S10: A saved page is written to disk and can be read back @v1 [proposed]
 
 - Given: a page with the title Asdf is saved under the slug asdf
@@ -93,6 +114,10 @@ _Source: `test/page.js`._
 - and: the file pages/asdf in the data directory holds the same title
 
 _Source: `test/page.js`._
+
+[test: should eventually write the page to disk : https://github.com/fedwiki/wiki-server/blob/main/test/page.js#L89 ]
+[test: should get a page if it exists : https://github.com/fedwiki/wiki-server/blob/main/test/page.js#L42 ]
+[test: should save a page : https://github.com/fedwiki/wiki-server/blob/main/test/page.js#L32 ]
 
 ## S11: The sitemap follows page creation, edits and deletion @v1 [proposed]
 
@@ -104,6 +129,11 @@ _Source: `test/page.js`._
 
 _Source: `test/sitemap.js`._
 
+[test: creating a page should add it to the sitemap : https://github.com/fedwiki/wiki-server/blob/main/test/sitemap.js#L62 ]
+[test: synopsis should reflect edit to first paragraph : https://github.com/fedwiki/wiki-server/blob/main/test/sitemap.js#L96 ]
+[test: deleting a page should remove it from the sitemap : https://github.com/fedwiki/wiki-server/blob/main/test/sitemap.js#L115 ]
+[test: new site should have an empty sitemap : https://github.com/fedwiki/wiki-server/blob/main/test/sitemap.js#L52 ]
+
 ## S12: The system endpoints list slugs, plugins and factories @v1 [proposed]
 
 - Given: a running wiki with the activity and video plugins installed
@@ -114,3 +144,7 @@ _Source: `test/sitemap.js`._
 - and: the factory list includes Video in the format category
 
 _Source: `test/server.js`._
+
+[test: factories should return a list of plugin : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L55 ]
+[test: new site should have an empty list of pages : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L66 ]
+[test: should return a list of plugins : https://github.com/fedwiki/wiki-server/blob/main/test/server.js#L240 ]
